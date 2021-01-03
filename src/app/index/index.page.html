@@ -1,0 +1,194 @@
+<ion-header>
+  <!-- CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+  <!-- JS -->
+  <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="../app.js"></script>
+
+  <style>
+    body     { padding-top:30px; margin-left: 30px; }
+  </style>
+
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+
+    function display() {
+      DispWin = window.open('','NewWin', 'toolbar=no,status=no,width=300,height=200')
+      message = "<ul><li><b>Naam: </b>" + document.form1.naam.value;
+      message += "<li><b>Leeftijd: </b>" + document.form1.age.value;
+      message += "<li><b>Datum: </b>" + document.form1.datetime-local;
+      message += "<li><b>Geslacht: </b>" + document.form1.gender.value + "</ul>";
+      DispWin.document.write(message);
+    }
+
+  </script>
+
+  <ion-toolbar>
+    <ion-title>index</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <body>
+  <body ng-app="validationApp" ng-controller="mainController">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="page-header"><h1>BAC Formulier</h1></div>
+
+    <!-- =================================================================== -->
+    <!-- FORMULIER ============================================================== -->
+    <!-- =================================================================== -->
+
+    <!-- pass in the variable if our form is valid or invalid -->
+    <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+      <H3>Gebruiker</H3>
+      <p>Datum: <input type="datetime-local" id="datepicker"></p>
+
+      <!-- NAAM -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.naam.$invalid && !userForm.name.$pristine }">
+        <label>naam</label>
+        <input type="text" name="naam" class="form-control" ng-model="user.naam" required>
+        <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Jou naam is nodig.</p>
+      </div>
+      
+      <!-- Leeftijd -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+        <label>leeftijd</label>
+        <input type="number" name="leeftijd" class="form-control" ng-model="user.leeftijd" ng-minlength="1" ng-maxlength="3">
+        <p ng-show="userForm.username.$error.minlength" class="help-block">leeftijd tekort.</p>
+        <p ng-show="userForm.username.$error.maxlength" class="help-block">Leeftijd telang.</p>
+      </div>
+
+      <!-- Geslacht -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+        <label>Geslacht</label><br>
+        <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Kies een geslacht</p>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+    <!-- =================================================================== -->
+    <!-- VALIDATION TABLES ================================================= -->
+    <!-- =================================================================== -->
+    <div class="page-header"><h1>Tabel validaties</h1></div>
+
+    <div class="row">
+      <div class="col-xs-3">
+        <h3>Hardware connection</h3>
+        <table class="table table-bordered">
+          <tbody>
+          <tr>
+            <td ng-class="{ success: userForm.$valid, danger: userForm.$invalid }">Connected</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.$pristine, danger: !userForm.$pristine }">Not connected</td>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-3">
+        <h3>Gebruiker</h3>
+        <table class="table table-bordered">
+          <tbody>
+          <tr>
+            <td ng-class="{ success: userForm.username.$valid, danger: userForm.username.$invalid }">Johan</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.username.$pristine, danger: !userForm.username.$pristine }">Yusa Yusak</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.username.$dirty }">William</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.username.$touched }">Opslaan?</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="col-xs-3">
+        <h3>Alcohol Promillage</h3>
+        <table class="table table-bordered">
+          <tbody>
+          <tr>
+            <td ng-class="{ success: userForm.email.$valid, danger: userForm.email.$invalid }">BAC = 1.10</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.email.$pristine, danger: !userForm.email.$pristine }">BAC = 0.80</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.email.$dirty }">BAC = 0.68</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.email.$touched }">BAC = 0.80</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-3">
+        <h3>Advies</h3>
+        <table class="table table-bordered">
+          <tbody>
+          <tr>
+            <td ng-class="{ success: userForm.email.$valid, danger: userForm.email.$invalid }">Danger: ga met de taxi naar huis</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.email.$pristine, danger: !userForm.email.$pristine }">Je kan nog rijden</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.email.$dirty }">fietsen lukt het wel</td>
+          </tr>
+          <tr>
+            <td ng-class="{ success: userForm.email.$touched }">lekker lopen</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+  </body>
+
+
+  <p>Knock knock, its the united states</p>
+  <ion-button (click)="nav.push(measurementPage)">
+    With huge boats
+  </ion-button>
+  <ion-button (click)="nav.push(measurementPage)">
+    With guns
+  </ion-button>
+  <ion-button (click)="database.createDB()">
+    Gunboats
+  </ion-button>
+  <p>{{error}}</p>
+
+
+
+</ion-content>

@@ -1,0 +1,128 @@
+<ion-header [translucent]="true">
+
+<style>
+
+  :root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+
+  header {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25em;
+    text-transform: uppercase;
+  }
+
+  #block {
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+  }
+
+  section:not(.full-width),
+  .full-width > header {
+    padding: 0 10px;
+  }
+  @mixin btn-large {
+    padding:15px 0;
+    min-width:150px;
+  }
+
+  @mixin btn-theme($btn-color) {
+    border-color: darken($btn-color, 15%);
+    background-color: $btn-color;
+    color:#fff;
+  &:hover {
+     background-color: lighten($btn-color, 2%);
+     border-bottom-color: darken($btn-color, 6%);
+   }
+  &:active {
+     border-bottom-width:2px;
+     outline:0;
+
+   }
+  }
+
+  .btn {
+    display: inline-block;
+    padding:8px  10px;
+    min-width:100px;
+    border: 0;
+    background:#ffdc49;
+    border-radius: 5px;
+    font-family: 'Helvetica',Arial, sans-serif;
+    color: #333;
+    font-weigt: 700;
+    font-size:14px;
+    line-height: normal;
+    cursor:pointer;
+    border-bottom: 3px solid #ffdc49;
+    text-align:center;
+
+  text: {
+    decoration: none;
+    shadow: 0 .063em rgba(black,.3);
+  }
+  &:hover{
+     border-bottom: 3px solid #ddd;
+     background:lighten( #e7e7e7 , 2%);
+   }
+  &:active{
+     border-bottom-width:2px;
+     position:relative;
+     top:1px;
+   }
+  &:focus{
+     outline:0;
+   }
+  }
+
+  .btn-main {
+    @include btn-theme($green);
+  }
+
+  .btn-sub {
+    @include btn-theme($blue);
+  }
+
+  .btn-large {
+    @include btn-large;
+  }
+
+  .btn-sub {
+    @include btn-theme($blue);
+  }
+
+
+</style>
+  <ion-toolbar>
+    <ion-title>
+
+       Tab 1
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+
+      <ion-title size="large">Tab 1</ion-title>
+      <div id="borderDemo">Editable text
+
+        <ion-button expand="block" fill="outline">Outline + Block</ion-button>
+
+
+        <h2>Themable buttons - large</h2>
+        <button class="btn btn-large">default</button>
+        <button class="btn btn-main btn-large">primary</button>
+        <button class="btn btn-sub btn-large">Secondry</button>
+
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-explore-container name="Tab 1 page"></app-explore-container>
+</ion-content>
